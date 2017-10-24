@@ -35,7 +35,7 @@ $(document).ready(function(){
         var numberOfPages = Math.ceil(studentList / itemsPerPage);
         
         const id = 0;
-        for(var i = 0; i <= numberOfPages; i++){//only shows page 1
+        for(var i = 0; i <= numberOfPages; i++){//only shows page 1  at the start of the app
         if (i != id){
             $("#page"+i).css("display","none");
         }
@@ -74,7 +74,7 @@ $(document).ready(function(){
         var studentList = $(".cf");
         studentList.each(function(key, value){
             
-            if (value.childNodes[1].innerHTML.toLowerCase().indexOf(text.toLowerCase()) >= 0){
+            if (value.childNodes[1].innerHTML.toLowerCase().indexOf(text.toLowerCase()) >= 0){//pushing matching students into the matched array to be sent to the showPage function
                 found = 'true';
                 matched.push($(value)[0]);
             }
@@ -89,7 +89,6 @@ $(document).ready(function(){
         }
         else{
             $("#search").val('');//if valid search value is entered call the showPage function with the matced array as the argument
-            console.log(matched);
             showPage(0,matched)
         }
         
@@ -106,8 +105,7 @@ function showPage(id, studentList){//function that controls what is shown on the
     var numberOfPages = Math.ceil(itemsToPaginate / itemsPerPage);
     var page = (parseInt(id)) - 1;
         if (studentList.length != 0){
-            var searchDiv = $("#page0")
-            //console.log(studentList.length);
+            var searchDiv = $("#page0");
             for (var i = 0 ; i < numberOfPages; i++){//hiding existing students so as to not to interfer with the search results students
                 $("#page"+i).children().hide();
             }
